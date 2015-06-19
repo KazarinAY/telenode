@@ -1,28 +1,15 @@
-var http = require("http");
-var url = require("url");
 var exec = require("child_process").exec;
 var child = initTelegram(false);
 
-var server = http.createServer(function(req, res) {
-        var pathname = url.parse(req.url).pathname;
-        res.writeHead(200);
-        res.end(pathname);
-        var command = validateAndParse(pathname);
-        console.log("command: " + command);
-        child.stdin.write(command);
-
-/*
-        if (pathname == "/cmd") {
-            child.stdin.write("msg Kazarin test\n");
-        } else if (pathname == "/quit" || pathname == "/exit") {
-            child.stdin.write("safe_quit\n");
-        } else if (pathname == "/init") {
-            child = initTelegram(false);
-        } 
-        */
-    }
-);
-server.listen(8080);
+var io = require('socket.io').listen(8080);
+io.sockets.on('connection', function (socket) {
+    socket.on('my event', function (msg) {
+        console.log("DATA: " + msg);        
+        if (isValide(msg)) {
+            child.stdin.write(msg);
+        }
+    });
+});
 
 function initTelegram(isStdoutOn) {
     child = exec("../tg/bin/telegram-cli -k ../tg/tg-server.pub"); // run telegram client
@@ -42,19 +29,9 @@ function initTelegram(isStdoutOn) {
     child.stdin.write("contact_list\n"); //без него будет "can not parse arg #1"  
     return child; 
 }
+function isValide(message) {
+    if (message == "") return false;
+    if (message.substring(0, 4) != "msg" ) return false;
 
-function validateAndParse(stringToParse) {
-    if (stringToParse == "") return "";
-    var result = "";
-
-    var cmds = stringToParse.split("%20");
-//    console.log("cmds[0]: " + cmds[0]);
-    if (cmds[0] == "/msg") {
-        result = cmds.join(" ");
-    } 
-    result = result.substring(1) + "\n";
-//    console.log("result: " + result);
-    return result;
-
+    return true;
 }
-
