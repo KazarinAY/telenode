@@ -55,4 +55,6 @@ function validateAndParse(stringToParse) {
     result = result.substring(1) + "\n";
     console.log("result: " + result);
     return result;
+
 }
+
