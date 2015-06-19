@@ -1,4 +1,4 @@
-var exec = require("childgit_process").exec;
+var exec = require("child_process").exec;
 var child = initTelegram(true);
 
 var io = require('socket.io').listen(8080);
