@@ -6,6 +6,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('my event', function (msg) {
         console.log("DATA: " + msg);        
         if (isValide(msg)) {
+            console.log("validation OK");
             child.stdin.write(msg);
         }
     });
@@ -32,6 +33,6 @@ function initTelegram(isStdoutOn) {
 function isValide(message) {
     if (message == "") return false;
 //    if (message.substring(0, 4) != "msg" ) return false;
-    console.log("validation OK");
+    
     return true;
 }
