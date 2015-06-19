@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
     <head>
-        <title>Hello World!</title>
+        <title>test</title>
         <meta charset="utf-8">
 
         <script src="http://10.50.32.230:8080/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                var socket = io.connect('http://10.50.32.230:8080');
-                $("#button").click(function() {
-                    socket.emit('my event' ,"msg Kazarin test");
+                var socket = io.connect('http://localhost:8080');
+                $("#send").click(function() {
+                    var name = document.getElementById("name").value;
+                    var message = document.getElementById("message").value;
+                    var output = "msg " + name + " " + "message" + "\n";
+                    socket.emit('my event' , output);
+                    console.log();
                 })
             })
         </script>
     </head>
 
     <body>
-        <button type="button" id='button'>Send Message</button> 
+    	<p>Test client to Telenode</p>
+
+		<form>
+			Name:<br>
+			<input type="text" id="name" name="name"><br>
+			Message:<br>
+			<input type="text" id="message" name="message">
+			<br><br>
+			<input type="submit" id='send' value="send">
+		</form> 
     </body>
 
 </html>

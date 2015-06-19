@@ -1,0 +1,31 @@
+1. Установить git
+	sudo apt-get update
+	sudo apt-get install git
+
+2. Установить telegram api, как в https://github.com/vysheng/tg
+	git clone --recursive https://github.com/vysheng/tg.git && cd tg
+	sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev libjansson-dev libpython-dev make 
+	./configure
+	 make
+
+3. Установить nodejs
+	sudo apt-get update
+	sudo apt-get install nodejs
+	sudo ln -s /usr/bin/nodejs /usr/bin/node
+	npm install socket.io 						//из папки с сервером
+4. 
+
+Полезные команды:
+	bin/telegram-cli -k tg-server.pub			//запуск telegram клиента
+
+	ifconfig - узнать ip
+
+	Change to en_US.utf8:
+	$ export LC_ALL=en_US.utf8 
+	$ export LANG="$LC_ALL"
+	http://help.ubuntu.ru/wiki/russian_font_in_console
+
+
+http://linsovet.org.ua/elinks-hot-keys
+
+https://github.com/KazarinAY/telenode.git
