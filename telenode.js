@@ -7,7 +7,7 @@ io.sockets.on('connection', function (socket) {
         console.log("DATA: " + msg);        
         if (isValide(msg)) {
             console.log("validation OK");
-            child.stdin.write(msg);
+            child.stdin.write(msg + "\n");
         }
     });
 });
