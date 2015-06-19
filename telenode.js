@@ -25,7 +25,7 @@ var server = http.createServer(function(req, res) {
 server.listen(8080);
 
 function initTelegram(isStdoutOn) {
-    child = exec("./bin/telegram-cli -k tg-server.pub");
+    child = exec("../tg/bin/telegram-cli -k ../tg/tg-server.pub"); // run telegram client
     child.stdin.setEncoding = 'utf-8';
     if (isStdoutOn) {
         child.stdout.on('data', function(data) {
@@ -48,12 +48,12 @@ function validateAndParse(stringToParse) {
     var result = "";
 
     var cmds = stringToParse.split("%20");
-    console.log("cmds[0]: " + cmds[0]);
+//    console.log("cmds[0]: " + cmds[0]);
     if (cmds[0] == "/msg") {
         result = cmds.join(" ");
     } 
     result = result.substring(1) + "\n";
-    console.log("result: " + result);
+//    console.log("result: " + result);
     return result;
 
 }
