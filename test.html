@@ -5,11 +5,11 @@
         <title>Hello World!</title>
         <meta charset="utf-8">
 
-        <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+        <script src="http://10.50.32.230:8080/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                var socket = io.connect('http://localhost:8080');
+                var socket = io.connect('http://10.50.32.230:8080');
                 $("#button").click(function() {
                     socket.emit('my event' ,"msg Kazarin test");
                 })
