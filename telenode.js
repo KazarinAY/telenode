@@ -1,5 +1,5 @@
-var exec = require("child_process").exec;
-var child = initTelegram(false);
+var exec = require("childgit_process").exec;
+var child = initTelegram(true);
 
 var io = require('socket.io').listen(8080);
 io.sockets.on('connection', function (socket) {
@@ -31,7 +31,7 @@ function initTelegram(isStdoutOn) {
 }
 function isValide(message) {
     if (message == "") return false;
-    if (message.substring(0, 4) != "msg" ) return false;
-
+//    if (message.substring(0, 4) != "msg" ) return false;
+    console.log("validation OK");
     return true;
 }
