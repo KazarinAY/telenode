@@ -8,13 +8,13 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                var socket = io.connect('http://localhost:8080');
+                var socket = io.connect('http://10.50.32.230:8080');
                 $("#send").click(function() {
                     var name = document.getElementById("name").value;
                     var message = document.getElementById("message").value;
-                    var output = "msg " + name + " " + "message" + "\n";
-                    socket.emit('my event' , output);
-                    console.log();
+                    var output = "msg " + name + " " + message + "\n";
+                    console.log(output);
+                    socket.emit('my event' , output);                    
                 })
             })
         </script>
