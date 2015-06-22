@@ -1,7 +1,7 @@
 var exec = require("child_process").exec;
 var child = initTelegram(false);
 
-var io = require('socket.io').listen(8080);
+var io = require('socket.io').listen(7777);
 io.sockets.on('connection', function (socket) {
     socket.on('my event', function (msg) {
         console.log("DATA: " + msg);        
