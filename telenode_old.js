@@ -6,6 +6,7 @@ var child = initTelegram(false);
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname;
         res.writeHead(200);
+        console.log("pathname: " + pathname);
         res.end(pathname);
         var command = validateAndParse(pathname);
         console.log("command: " + command);
