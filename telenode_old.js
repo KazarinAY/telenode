@@ -22,7 +22,7 @@ var server = http.createServer(function(req, res) {
         */
     }
 );
-server.listen(8080);
+server.listen(7777);
 
 function initTelegram(isStdoutOn) {
     child = exec("../tg/bin/telegram-cli -k ../tg/tg-server.pub"); // run telegram client
