@@ -1,74 +1,67 @@
 package telegram;
 
-import io.socket.IOAcknowledge;
-import io.socket.IOCallback;
-import io.socket.SocketIO;
-import io.socket.SocketIOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-public class Application implements IOCallback {
-	private SocketIO socket;
-
-	/**
-	 * @param args
-	 */
+public class Application {
+	private static final String TARGET = "http://89.108.79.137:7777/";
+	
 	public static void main(String[] args) {
+		System.out.println(excutePost(TARGET, "TEST TEST TEST" ));
+	}
+
+	public static String excutePost(String targetURL, String urlParameters) {
+		URL url;
+		HttpURLConnection connection = null;  
 		try {
-			new Application();
+			//Create connection
+			url = new URL(targetURL);
+			connection = (HttpURLConnection)url.openConnection();
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", 
+			"application/x-www-form-urlencoded");
+
+			connection.setRequestProperty("Content-Length", "" + 
+			Integer.toString(urlParameters.getBytes().length));
+			connection.setRequestProperty("Content-Language", "en-US");  
+
+			connection.setUseCaches (false);
+			connection.setDoInput(true);
+			connection.setDoOutput(true);
+
+			//Send request
+			DataOutputStream wr = new DataOutputStream (
+			connection.getOutputStream ());
+			wr.writeBytes (urlParameters);
+			wr.flush ();
+			wr.close ();
+
+			//Get Response	
+			InputStream is = connection.getInputStream();
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+			String line;
+			StringBuffer response = new StringBuffer(); 
+			while((line = rd.readLine()) != null) {
+				response.append(line);
+				response.append('\r');
+			}
+			rd.close();
+			return response.toString();
+
 		} catch (Exception e) {
+
 			e.printStackTrace();
+			return null;
+
+		} finally {
+
+			if(connection != null) {
+				connection.disconnect(); 
+			}
 		}
-	}
-
-	public Application() throws Exception {
-		socket = new SocketIO();
-		socket.connect("http://89.108.79.137:7777/", this);
-
-		// Sends a string to the server.
-		//socket.send("Hello Server");
-/*
-		// Sends a JSON object to the server.
-		socket.send(new JSONObject().put("key", "value").put("key2",
-				"another value"));
-*/
-		// Emits an event to the server.
-		socket.emit("my event", "argument1");
-	}
-
-	@Override
-	public void onMessage(JSONObject json, IOAcknowledge ack) {
-		try {
-			System.out.println("Server said:" + json.toString(2));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void onMessage(String data, IOAcknowledge ack) {
-		System.out.println("Server said: " + data);
-	}
-
-	@Override
-	public void onError(SocketIOException socketIOException) {
-		System.out.println("an Error occured");
-		socketIOException.printStackTrace();
-	}
-
-	@Override
-	public void onDisconnect() {
-		System.out.println("Connection terminated.");
-	}
-
-	@Override
-	public void onConnect() {
-		System.out.println("Connection established");
-	}
-
-	@Override
-	public void on(String event, IOAcknowledge ack, Object... args) {
-		System.out.println("Server triggered event '" + event + "'");
 	}
 }
