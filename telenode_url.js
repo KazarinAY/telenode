@@ -1,30 +1,23 @@
 var http = require("http");
 var url = require("url");
-var urlencode = require('urlencode');
+var fs = require('fs');
 var exec = require("child_process").exec;
-var child = initTelegram(false);
+var child = initTelegram(true);
 
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname;
         pathname = decodeURIComponent(pathname);
         res.writeHead(200);
         console.log("pathname: " + pathname);
-        res.end(urlencode("отправлено", 'utf-8'));
-        var command = validateAndParse(pathname);
+        res.end("OK");
+//        var command = validateAndParse(pathname);
+        pathname = pathname.substring(1);
         console.log("command: " + command);
         child.stdin.write(command);
 
-/*
-        if (pathname == "/cmd") {
-            child.stdin.write("msg Kazarin test\n");
-        } else if (pathname == "/quit" || pathname == "/exit") {
-            child.stdin.write("safe_quit\n");
-        } else if (pathname == "/init") {
-            child = initTelegram(false);
-        } 
-        */
     }
 );
+
 server.listen(7777);
 
 function initTelegram(isStdoutOn) {
@@ -33,7 +26,10 @@ function initTelegram(isStdoutOn) {
     if (isStdoutOn) {
         child.stdout.on('data', function(data) {
             if (data == "> ") {return;}             
-            console.log("DATA \"" + data + "\"");   
+            console.log("DATA \"" + data + "\"");  
+            fs.writeFile('log.txt', 'Hello World!', function (err) {
+                if (err) return console.log(err);                
+            }); 
         });
         child.stderr.on('data', function(data) {
             console.log(data);
@@ -47,10 +43,11 @@ function initTelegram(isStdoutOn) {
 }
 
 function validateAndParse(stringToParse) {
+    console.log("result: " + stringToParse);
     if (stringToParse == "") return "";
     var result = "";
 
-    var cmds = stringToParse.split("%20");
+    var cmds = stringToParse.split(" ");
 //    console.log("cmds[0]: " + cmds[0]);
     if (cmds[0] == "/msg") {
         result = cmds.join(" ");
