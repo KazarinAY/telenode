@@ -27,7 +27,7 @@ function initTelegram(isStdoutOn) {
         child.stdout.on('data', function(data) {
             if (data == "> ") {return;}             
             console.log("DATA \"" + data + "\"");  
-            fs.writeFile('log.txt', data, function (err) {
+            fs.appendFile('log.txt', data, function (err) {
                 if (err) return console.log(err);                
             }); 
         });
