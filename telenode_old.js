@@ -6,7 +6,7 @@ var child = initTelegram(false);
 
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname;
-        //pathname = urlencode(pathname, 'utf-8');
+        pathname = decodeURIComponent(pathname);
         res.writeHead(200);
         console.log("pathname: " + pathname);
         res.end(urlencode("отправлено", 'utf-8'));
