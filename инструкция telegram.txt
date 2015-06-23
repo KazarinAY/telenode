@@ -37,7 +37,7 @@ centOS:
 2. Установить telegram api, как в https://github.com/vysheng/tg
 	git clone --recursive https://github.com/vysheng/tg.git && cd tg
 	sudo yum install lua-devel openssl-devel libconfig-devel readline-devel libevent-devel libjansson-devel python-devel	
-	./configure
+	./configure --disable-json
 	 make
 
 3. Установить nodejs

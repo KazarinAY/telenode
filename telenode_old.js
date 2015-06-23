@@ -1,13 +1,15 @@
 var http = require("http");
 var url = require("url");
+var urlencode = require('urlencode');
 var exec = require("child_process").exec;
 var child = initTelegram(false);
 
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname;
+        pathname = urlencode(pathname, 'windows 1251');
         res.writeHead(200);
         console.log("pathname: " + pathname);
-        res.end(pathname);
+        res.end("отправлено");
         var command = validateAndParse(pathname);
         console.log("command: " + command);
         child.stdin.write(command);
@@ -54,7 +56,7 @@ function validateAndParse(stringToParse) {
         result = cmds.join(" ");
     } 
     result = result.substring(1) + "\n";
-//    console.log("result: " + result);
+    console.log("result: " + result);
     return result;
 
 }

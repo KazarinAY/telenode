@@ -24,17 +24,17 @@ public class Application implements IOCallback {
 
 	public Application() throws Exception {
 		socket = new SocketIO();
-		socket.connect("http:///89.108.79.137:7777/", this);
+		socket.connect("http://89.108.79.137:7777/", this);
 
 		// Sends a string to the server.
-		socket.send("Hello Server");
+		//socket.send("Hello Server");
 /*
 		// Sends a JSON object to the server.
 		socket.send(new JSONObject().put("key", "value").put("key2",
 				"another value"));
 */
 		// Emits an event to the server.
-		socket.emit("event", "argument1", "argument2", 13.37);
+		socket.emit("my event", "argument1");
 	}
 
 	@Override
