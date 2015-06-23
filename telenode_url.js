@@ -8,6 +8,7 @@ var server = http.createServer(function(req, res) {
             console.log("req: " + i);
         }
         
+        console.log("req.url: " + req.url);
         
         var pathname = url.parse(req.url).pathname;
 
