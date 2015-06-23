@@ -1,7 +1,7 @@
 var http = require("http");
 var url = require("url");
 var exec = require("child_process").exec;
-var child = initTelegram(false);
+var child = initTelegram(true);
 
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname;
