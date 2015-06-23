@@ -7,8 +7,9 @@ var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname;
         pathname = decodeURIComponent(pathname);
         res.writeHead(200);
-        console.log("pathname: " + pathname);
         res.end("OK");
+        if (pathname == "/favicon.ico") return;
+        
         var command = pathname.substring(1);
         console.log("command: " + command + "\n");
         child.stdin.write(command);
