@@ -19,7 +19,7 @@ var server = http.createServer(function(req, res) {
 server.listen(7777);
 
 function initTelegram(isStdoutOn) {
-    child = exec("../tg/bin/telegram-cli -k -D ../tg/tg-server.pub"); // run telegram client
+    child = exec("../tg/bin/telegram-cli -k ../tg/tg-server.pub"); // run telegram client
     child.stdin.setEncoding = 'utf-8';
     if (isStdoutOn) {
         child.stdout.on('data', function(data) {
