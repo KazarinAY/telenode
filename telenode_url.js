@@ -1,7 +1,7 @@
 var http = require("http");
 var url = require("url");
 var exec = require("child_process").exec;
-var child = initTelegram(true);
+var child = initTelegram(false);
 
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname;
@@ -19,7 +19,7 @@ var server = http.createServer(function(req, res) {
 server.listen(7777);
 
 function initTelegram(isStdoutOn) {
-    child = exec("../tg/bin/telegram-cli -k ../tg/tg-server.pub"); // run telegram client
+    child = exec("../tg/bin/telegram-cli -k - D ../tg/tg-server.pub"); // run telegram client
     child.stdin.setEncoding = 'utf-8';
     if (isStdoutOn) {
         child.stdout.on('data', function(data) {
