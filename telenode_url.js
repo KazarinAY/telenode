@@ -4,7 +4,7 @@ var exec = require("child_process").exec;
 var child = initTelegram(false);
 
 var server = http.createServer(function(req, res) {
-        var pathname = url.parse(req.url).query;
+        var pathname = url.parse(req.url, true).query;
         pathname = decodeURIComponent(pathname);
         res.writeHead(200);
         res.end("OK");

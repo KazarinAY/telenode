@@ -34,9 +34,8 @@ public class Application {
 			connection.setDoOutput(true);
 
 			//Send request
-			DataOutputStream wr = new DataOutputStream (
-			connection.getOutputStream ());
-			wr.writeBytes (urlParameters);
+			DataOutputStream wr = new DataOutputStream (connection.getOutputStream());
+			wr.writeBytes(urlParameters);
 			wr.flush ();
 			wr.close ();
 
