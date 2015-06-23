@@ -9,7 +9,7 @@ var server = http.createServer(function(req, res) {
         //pathname = urlencode(pathname, 'utf-8');
         res.writeHead(200);
         console.log("pathname: " + pathname);
-        res.end("отправлено");
+        res.end(urlencode("отправлено", 'utf-8'));
         var command = validateAndParse(pathname);
         console.log("command: " + command);
         child.stdin.write(command);
