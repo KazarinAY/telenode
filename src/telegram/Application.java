@@ -8,48 +8,29 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Application {
-	private static final String TARGET = "http://89.108.79.137:7777/";
+	private static final String TARGET = "http://89.108.79.137:7777/?param1=TEST";
 	
 	public static void main(String[] args) {
-		System.out.println(excutePost(TARGET, "param1=TEST" ));
+		System.out.println(excuteGet(TARGET));
 	}
 
-	public static String excutePost(String targetURL, String urlParameters) {
+	public static String excuteGet(String targetURL) {
 		URL url;
+		BufferedReader rd;
+		String line;
+      	String result = "";
 		HttpURLConnection connection = null;  
 		try {
 			//Create connection
 			url = new URL(targetURL);
 			connection = (HttpURLConnection)url.openConnection();
-			connection.setRequestMethod("POST");
-			connection.setRequestProperty("Content-Type", 
-			"application/x-www-form-urlencoded");
-
-			connection.setRequestProperty("Content-Length", "" + Integer.toString(urlParameters.getBytes().length));
-			connection.setRequestProperty("Content-Language", "en-US");  
-
-			connection.setUseCaches (false);
-			connection.setDoInput(true);
-			connection.setDoOutput(true);
-
-			//Send request
-			DataOutputStream wr = new DataOutputStream (connection.getOutputStream());
-			wr.writeBytes(urlParameters);
-			wr.flush ();
-			wr.close ();
-
-			//Get Response	
-			InputStream is = connection.getInputStream();
-			BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-			String line;
-			StringBuffer response = new StringBuffer(); 
-			while((line = rd.readLine()) != null) {
-				response.append(line);
-				response.append('\r');
+			connection.setRequestMethod("GET");
+			rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			while ((line = rd.readLine()) != null) {
+				result += line;
 			}
-			rd.close();
-			return response.toString();
-
+			rd.close();			
+			return result;
 		} catch (Exception e) {
 
 			e.printStackTrace();
