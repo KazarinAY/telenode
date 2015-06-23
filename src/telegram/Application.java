@@ -11,7 +11,7 @@ public class Application {
 	private static final String TARGET = "http://89.108.79.137:7777/";
 	
 	public static void main(String[] args) {
-		System.out.println(excutePost(TARGET, "TEST TEST TEST" ));
+		System.out.println(excutePost(TARGET, "param1=TEST" ));
 	}
 
 	public static String excutePost(String targetURL, String urlParameters) {
@@ -25,8 +25,7 @@ public class Application {
 			connection.setRequestProperty("Content-Type", 
 			"application/x-www-form-urlencoded");
 
-			connection.setRequestProperty("Content-Length", "" + 
-			Integer.toString(urlParameters.getBytes().length));
+			connection.setRequestProperty("Content-Length", "" + Integer.toString(urlParameters.getBytes().length));
 			connection.setRequestProperty("Content-Language", "en-US");  
 
 			connection.setUseCaches (false);

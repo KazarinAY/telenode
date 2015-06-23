@@ -7,9 +7,9 @@ var server = http.createServer(function(req, res) {
         for (var i in req) {
             console.log("req: " + i);
         }
-        
+        console.log("req.getParameter: " + req.getParameter("param1"));
         console.log("req.url: " + req.url);
-        
+
         var pathname = url.parse(req.url).pathname;
 
         pathname = decodeURIComponent(pathname);
