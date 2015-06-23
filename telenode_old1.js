@@ -1,21 +1,6 @@
 var exec = require("child_process").exec;
 var child = initTelegram(false);
 
-var server = require('http').Server();
-var io = require('socket.io')(server);
-io.on('connection', function(socket){
-    socket.on('my event', function(data){
-        console.log("Received message : "+data);
-        socket.emit("my event","echoing back : "+data);
-    });
-
-    socket.on('disconnect', function(){
-    // client disconnected
-    });
-
-});
-server.listen(7777,"89.108.79.137");
-/*
 var io = require('socket.io').listen(7777);
 io.sockets.on('connection', function (socket) {
     socket.on('my event', function (msg) {
@@ -26,7 +11,7 @@ io.sockets.on('connection', function (socket) {
         }
     });
 });
-*/
+
 function initTelegram(isStdoutOn) {
     child = exec("../tg/bin/telegram-cli -k ../tg/tg-server.pub"); // run telegram client
     child.stdin.setEncoding = 'utf-8';
