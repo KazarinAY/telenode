@@ -10,7 +10,7 @@ var server = http.createServer(function(req, res) {
         console.log("pathname: " + pathname);
         res.end("OK");
         var command = pathname.substring(1);
-        console.log("command: " + command);
+        console.log("command: " + command + "\n");
         child.stdin.write(command);
     }
 );
@@ -35,4 +35,3 @@ function initTelegram(isStdoutOn) {
     child.stdin.write("contact_list\n"); //без него будет "can not parse arg #1"  
     return child; 
 }
-
