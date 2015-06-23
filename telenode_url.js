@@ -4,10 +4,13 @@ var exec = require("child_process").exec;
 var child = initTelegram(false);
 
 var server = http.createServer(function(req, res) {
-        console.log("req: " + req);
+        for (var i in req) {
+            console.log("req: " + i);
+        }
+        
         
         var pathname = url.parse(req.url).pathname;
-        
+
         pathname = decodeURIComponent(pathname);
         res.writeHead(200);
         res.end("OK");
