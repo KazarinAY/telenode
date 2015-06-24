@@ -2,7 +2,7 @@ var http = require("http");
 var url = require("url");
 var sys = require('sys');
 var exec = require("child_process").exec;
-var cmd = "../tg/bin/telegram-cli -k ../tg/tg-server.pub -W -C -e ";
+var cmd = "../tg/bin/telegram-cli -k ../tg/tg-server.pub -W -C -R -e ";
 
 var resurs;
 
