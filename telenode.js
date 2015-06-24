@@ -5,12 +5,10 @@ var cmd = "../tg/bin/telegram-cli -k ../tg/tg-server.pub -W -e ";
 
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname.substring(1);
-
-        pathname = decode(pathname);
-        
-        var command = pathname;
+        pathname = decode(pathname);        
+        var command = cmd + '"' + pathname + '"';
         console.log("command: " + command);
-        child = exec(cmd + '"' + command + '"');
+        child = exec(command);
         res.writeHead(200);
         res.end("OK");
     }
