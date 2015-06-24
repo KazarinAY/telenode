@@ -16,7 +16,7 @@ var server = http.createServer(function(req, res) {
         console.log("command: " + command);
         exec(command, puts);
         res.writeHead(200);
-        res.end("OK");
+//        res.end("OK");
     }
 );
 
