@@ -45,6 +45,7 @@ function decode (what) {
     for (var i = 0; i < charArr.length; i++ ) {
         if (charArr[i] == '%') {
             var chInt = parseInt(ch);
+            console.log(String.fromCharCode(chInt)); 
             result += String.fromCharCode(chInt);
             ch = '';
             newChar = true;           
@@ -54,6 +55,6 @@ function decode (what) {
         } else {
             ch += charArr[i];
         }
-
     }
+    return result
 }
