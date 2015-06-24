@@ -11,9 +11,6 @@ var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname.substring(1);
         resurs = res;
         pathname = decode(pathname);         
-//      pathname =  decodeURIComponent(pathname);
-        pathname = encodeURIComponent(pathname);
-        pathname =  decodeURIComponent(pathname);
         var command = cmd + '"' + pathname + '"';
         console.log("command: " + command);
         exec(command, puts);
@@ -39,7 +36,6 @@ function decode (what) {
     for (var i = 1; i < charArr.length; i++ ) {
         if (charArr[i] == '%') {
             chInt = parseInt(ch);
-            console.log(String.fromCharCode(chInt)); 
             result += String.fromCharCode(chInt);
             ch = '';
             newChar = true;           
@@ -52,7 +48,6 @@ function decode (what) {
     }
     if (chInt) {
         chInt = parseInt(ch);
-        console.log(String.fromCharCode(chInt)); 
         result += String.fromCharCode(chInt);
     }    
     return result
