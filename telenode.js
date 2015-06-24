@@ -13,7 +13,7 @@ var server = http.createServer(function(req, res) {
         pathname = decode(pathname);         
 //        pathname =  decodeURIComponent(pathname);
         var command = cmd + '"' + pathname + '"';
-        console.log("command: " + command);
+        console.log("command: " + command + " ");
         exec(command, puts);
         res.writeHead(200);
 //        res.end("OK");
