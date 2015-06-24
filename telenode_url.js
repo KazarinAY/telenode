@@ -4,11 +4,11 @@ var exec = require("child_process").exec;
 var child = initTelegram(false);
 
 var server = http.createServer(function(req, res) {
-        var pathname = url.parse(req.url).pathname;
+        var pathname = url.parse(req.url).pathname.substring(1);
 
-        pathname = decodeURI(pathname);
+        pathname = decode(pathname);
         
-        var command = pathname.substring(1) + "\n";
+        var command = pathname + "\n";
         console.log("command: " + command);
         child.stdin.write(command);
         res.writeHead(200);
@@ -35,4 +35,25 @@ function initTelegram(isStdoutOn) {
     });
     child.stdin.write("contact_list\n"); //без него будет "can not parse arg #1"  
     return child; 
+}
+
+function decode (what) {
+    var result = "";
+    var newChar = false;
+    var ch = '';
+    var charArr = what.split('');
+    for (var i = 0; i < charArr.length; i++ ) {
+        if (charArr[i] == '%') {
+            var chInt = parseInt(ch);
+            result += String.fromCharCode(chInt);
+            ch = '';
+            newChar = true;           
+        } else if (newChar) {
+            ch = charArr[i];
+            newChar = false;
+        } else {
+            ch += charArr[i];
+        }
+
+    }
 }
