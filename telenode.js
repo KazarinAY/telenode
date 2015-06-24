@@ -1,7 +1,6 @@
 var http = require("http");
 var url = require("url");
 var exec = require("child_process").exec;
-var child = initTelegram(false);
 var cmd = "../tg/bin/telegram-cli -k ../tg/tg-server.pub -W -e ";
 
 var server = http.createServer(function(req, res) {
