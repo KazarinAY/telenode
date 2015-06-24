@@ -1,0 +1,102 @@
+Telegram-cli version 1.3.3, Copyright (C) 2013-2015 Vitaly Valtman
+Telegram-cli comes with ABSOLUTELY NO WARRANTY; for details type `show_license'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type `show_license' for details.
+Telegram-cli uses libtgl version 2.0.3
+Telegram-cli uses libpython version 2.7.9
+I: config dir=[/home/user/.telegram-cli]
+> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K[0;31m[1;31mSkydark[0;31m[0m
+[0;31m[1;31mKazarin[0;31m[0m
+[0;31m[1;31mРЎРµСЂРіРµР№ РђРІРґРѕРЅСЊРєРёРЅ[0;31m[0m
+> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> 
+[K> All done. Exit
+halt
