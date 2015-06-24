@@ -3,11 +3,13 @@ var url = require("url");
 var sys = require('sys');
 var exec = require("child_process").exec;
 var cmd = "../tg/bin/telegram-cli -k ../tg/tg-server.pub -W -e ";
+
 function puts(error, stdout, stderr) { sys.puts(stdout) }
 
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname.substring(1);
-        pathname = decode(pathname);        
+//        pathname = decode(pathname);    
+        pathname =  decodeURIComponent(pathname);
         var command = cmd + '"' + pathname + '"';
         console.log("command: " + command);
         exec(command, puts);
