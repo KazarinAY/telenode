@@ -1,39 +1,30 @@
+var http = require("http");
+var url = require("url");
 var exec = require("child_process").exec;
 var child = initTelegram(false);
 
-var server = require('http').Server();
-var io = require('socket.io')(server);
-io.on('connection', function(socket){
-    socket.on('my event', function(data){
-        console.log("Received message : "+data);
-        socket.emit("my event","echoing back : "+data);
-    });
+var server = http.createServer(function(req, res) {
+        var pathname = url.parse(req.url).pathname.substring(1);
 
-    socket.on('disconnect', function(){
-    // client disconnected
-    });
+        pathname = decode(pathname);
+        
+        var command = pathname + "\n";
+        console.log("command: " + command);
+        child.stdin.write(command);
+        res.writeHead(200);
+        res.end("OK");
+    }
+);
 
-});
-server.listen(7777,"89.108.79.137");
-/*
-var io = require('socket.io').listen(7777);
-io.sockets.on('connection', function (socket) {
-    socket.on('my event', function (msg) {
-        console.log("DATA: " + msg);        
-        if (isValide(msg)) {
-            console.log("validation OK");
-            child.stdin.write(msg);
-        }
-    });
-});
-*/
+server.listen(7777);
+
 function initTelegram(isStdoutOn) {
     child = exec("../tg/bin/telegram-cli -k ../tg/tg-server.pub"); // run telegram client
     child.stdin.setEncoding = 'utf-8';
     if (isStdoutOn) {
         child.stdout.on('data', function(data) {
             if (data == "> ") {return;}             
-            console.log("DATA \"" + data + "\"");   
+            console.log("DATA \"" + data + "\"");             
         });
         child.stderr.on('data', function(data) {
             console.log(data);
@@ -45,9 +36,31 @@ function initTelegram(isStdoutOn) {
     child.stdin.write("contact_list\n"); //без него будет "can not parse arg #1"  
     return child; 
 }
-function isValide(message) {
-    if (message == "") return false;
-//    if (message.substring(0, 4) != "msg" ) return false;
-    
-    return true;
+
+function decode (what) {
+    var result = "";
+    var newChar = false;
+    var chInt;
+    var ch = '';
+    var charArr = what.split('');
+    for (var i = 0; i < charArr.length; i++ ) {
+        if (charArr[i] == '%') {
+            chInt = parseInt(ch);
+ //           console.log(String.fromCharCode(chInt)); 
+            result += String.fromCharCode(chInt);
+            ch = '';
+            newChar = true;           
+        } else if (newChar) {
+            ch = charArr[i];
+            newChar = false;
+        } else {
+            ch += charArr[i];
+        }
+    }
+    if (chInt) {
+        chInt = parseInt(ch);
+ //       console.log(String.fromCharCode(chInt)); 
+        result += String.fromCharCode(chInt);
+    }    
+    return result
 }
