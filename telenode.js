@@ -9,9 +9,9 @@ var resurs;
 
 var server = http.createServer(function(req, res) {
         var pathname = url.parse(req.url).pathname.substring(1);
-//        pathname = decode(pathname);  
         resurs = res;
-        pathname =  decodeURIComponent(pathname);
+        pathname = decode(pathname);         
+//        pathname =  decodeURIComponent(pathname);
         var command = cmd + '"' + pathname + '"';
         console.log("command: " + command);
         exec(command, puts);
