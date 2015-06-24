@@ -40,11 +40,12 @@ function initTelegram(isStdoutOn) {
 function decode (what) {
     var result = "";
     var newChar = false;
+    var chInt;
     var ch = '';
     var charArr = what.split('');
     for (var i = 0; i < charArr.length; i++ ) {
         if (charArr[i] == '%') {
-            var chInt = parseInt(ch);
+            chInt = parseInt(ch);
             console.log(String.fromCharCode(chInt)); 
             result += String.fromCharCode(chInt);
             ch = '';
@@ -56,5 +57,10 @@ function decode (what) {
             ch += charArr[i];
         }
     }
+    if (chInt) {
+        chInt = parseInt(ch);
+        console.log(String.fromCharCode(chInt)); 
+        result += String.fromCharCode(chInt);
+    }    
     return result
 }
