@@ -34,8 +34,7 @@ function decode (what) {
     var charArr = what.split('');
     for (var i = 1; i < charArr.length; i++ ) {
         if (charArr[i] == '%') {
-            chInt = parseInt(ch);
-            console.log(String.fromCharCode(chInt) + " " + ch);
+            chInt = parseInt(ch);            
             if (chInt == 1048) {
                 result += 'И';
             } else {
