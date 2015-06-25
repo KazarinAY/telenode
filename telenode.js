@@ -36,7 +36,7 @@ function decode (what) {
         if (charArr[i] == '%') {
             chInt = parseInt(ch);
             console.log(String.fromCharCode(chInt) + " " + ch);
-            if (chInt = 1048) {
+            if (chInt == 1048) {
                 result += 'И';
             } else {
                 result += String.fromCharCode(chInt);
