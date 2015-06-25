@@ -35,8 +35,13 @@ function decode (what) {
     for (var i = 1; i < charArr.length; i++ ) {
         if (charArr[i] == '%') {
             chInt = parseInt(ch);
-            console.log(String.fromCharCode(chInt) + " " + ch)
-            result += String.fromCharCode(chInt);
+            console.log(String.fromCharCode(chInt) + " " + ch);
+            if (chInt = 1048) {
+                result += 'И';
+            } else {
+                result += String.fromCharCode(chInt);
+            }
+            
             ch = '';
             newChar = true;           
         } else if (newChar) {
