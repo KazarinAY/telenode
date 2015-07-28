@@ -16,7 +16,7 @@ var server = http.createServer(function(req, res) {
         var command = cmd + '"' + pathname + '"';
         console.log("command: " + command);
         exec(command, puts);
-        res.writeHead(200);
+        res.writeHead(10);
         
     }
 );
