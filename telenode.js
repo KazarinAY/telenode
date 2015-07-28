@@ -9,7 +9,7 @@ var resurs;
 
 var server = http.createServer(function(req, res) {
         var start = new Date();
-        console.log(start.getHours() + ":" + start.getMinutes() + ":" + start..getSeconds());
+        console.log(start.getHours() + ":" + start.getMinutes() + ":" + start.getSeconds());
         var pathname = url.parse(req.url).pathname.substring(1);
         resurs = res;
         pathname = decode(pathname);         
@@ -18,7 +18,7 @@ var server = http.createServer(function(req, res) {
         exec(command, puts);
         res.writeHead(200);
         var fin = new Date();
-        console.log(fin.getHours() + ":" + fin.getMinutes() + ":" + fin..getSeconds());
+        console.log(fin.getHours() + ":" + fin.getMinutes() + ":" + fin.getSeconds());
     }
 );
 
