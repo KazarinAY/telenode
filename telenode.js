@@ -17,8 +17,7 @@ var server = http.createServer(function(req, res) {
         console.log("command: " + command);
         exec(command, puts);
         res.writeHead(200);
-        var fin = new Date();
-        console.log(fin.getHours() + ":" + fin.getMinutes() + ":" + fin.getSeconds());
+        
     }
 );
 
@@ -26,6 +25,8 @@ server.listen(7777);
 
 function puts(error, stdout, stderr) { 
     console.log("OK");
+    var fin = new Date();
+    console.log(fin.getHours() + ":" + fin.getMinutes() + ":" + fin.getSeconds());
     sys.puts(stdout);
     resurs.end(stdout);
 }
